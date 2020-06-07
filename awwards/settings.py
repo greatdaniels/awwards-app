@@ -122,6 +122,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 UPLOADCARE = {
     'pub_key':'db823c4b1c533881bf6f',
     'secret':'164525714322a92180cc',
