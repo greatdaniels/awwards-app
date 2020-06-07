@@ -24,3 +24,13 @@ class UserForm(forms.ModelForm):
     class Meta: 
         model = User
         fields = ('username', 'email')
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['name', 'profile_picture', 'bio']
+
+class RatingsForm(forms.ModelForm):
+    class Meta:
+        model = Rating
+        fields = ['design', 'usability', 'content']
