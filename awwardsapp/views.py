@@ -1,10 +1,11 @@
 import random
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import PostForm, SignupForm, UserForm, ProfileForm, RatingsForm
 from .models import Post, Profile, Rating
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.http import HttpResponseRedirect 
+from django.contrib.auth.models import User
 
 # Create your views here.
 # @login_required(login_url='login')
@@ -104,3 +105,17 @@ def project(request, post):
 
     }
     return render(request, 'project.html', params)
+
+@login_required(login_url='login')
+def profile(request, username):
+    return render(request, 'profile.html')
+
+
+def user_profile(request, username):
+    user_prof = get_object_or_404(User, username=username)
+    if request.user == user_prof:
+        return redirect('profile', username=request.user.username)
+    params = {
+        'user_prof': user_prof,
+    }
+    return render(request, 'userprofile.html', params)
