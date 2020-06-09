@@ -18,14 +18,16 @@
     
                     {% if post.user.profile.profile_pic %}
                     <div class="card-custom-avatar">
-                        <a href="">
+                        <a href="{% url 'userprofile' post.user.username %}">
                             <img class="img-fluid" src="{{post.user.profile.profile_pic.cdn_url}}" alt="Avatar" style="border: solid #eaf1efdc 3.5px;">
                         </a>
                         
                     </div>
                     {% else %}
                     <div class="card-custom-avatar">
-                        <img class="img-fluid" src="{%static 'images/default.png'%}" alt="Avatar"style="border: solid #eaf1efdc 3.5px;">
+                        <a href="{% url 'userprofile' post.user.username %}">
+                            <img class="img-fluid" src="{%static 'images/default.png'%}" alt="Avatar"style="border: solid #eaf1efdc 3.5px;">
+                        </a>
                     </div>
                     {% endif %}
     
@@ -35,8 +37,8 @@
                                 style="font-family: 'Arsenal', sans-serif;">{{post.description}}</span></p>
                     </div>
                     <div class="card-footer" style="background: inherit; border-color: inherit; border: none;">
-                        <a href="" class="btn btn-dark rounded rounded-pill btn-block">Review</a>
-                        <a href="" class="btn btn-outline-dark rounded rounded-pill btn-block">Go To Site</a>
+                        <a href="{% url 'project' post.title %}" class="btn btn-dark rounded rounded-pill btn-block">Review</a>
+                        <a href="{{ post.url }}" class="btn btn-outline-dark rounded rounded-pill btn-block">Go To Site</a>
                     </div>
     
                 </div>
