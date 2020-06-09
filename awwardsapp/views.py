@@ -25,12 +25,12 @@ def index(request):
     try:
         posts = Post.objects.all()
         posts = posts[::-1]
-        a_post = random.randint(0, len(posts)-1)
-        random_post = posts[a_post]
-        print(random_post.photo)
+        # a_post = random.randint(0, len(posts)-1)
+        # random_post = posts[a_post]
+        # print(random_post.photo)
     except Post.DoesNotExist:
         posts = None
-    return render(request, 'index.html', {'posts': posts, 'form': form, 'random_post': random_post})
+    return render(request, 'index.html', {'posts': posts, 'form': form,})
 
 def signup(request):
     if request.method == 'POST':
@@ -41,7 +41,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('welcome')
+            return redirect('index')
     else:
         form = SignupForm()
     return render(request, 'registration/signup.html', {'form': form})
